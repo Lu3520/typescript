@@ -21,11 +21,11 @@ const buy = (itemName: string) => {
     alert('Are you sure to buy ' + itemName + '?')
 }
 
-const input = (event: any) => {
-    console.log('evnet: ', event.target.value)
-    // objectがconstでも中のvalueを変更することが可能
-    item1.name = event.target.value
-}
+// const input = (event: any) => {
+//     console.log('evnet: ', event.target.value)
+//     // objectがconstでも中のvalueを変更することが可能
+//     item1.name = event.target.value
+// }
 
 const inputPrice = (event: any) => {
     console.log('evnet: ', event.target.value)
@@ -33,14 +33,23 @@ const inputPrice = (event: any) => {
     item1.price = event.target.value
 }
 
+// v-bind:value="item1.price"を使わないとinputの値は更新されない
+// v-model：双方向バインド, v-modelを使うことで簡略に書くことができる
+// v-model="変数名" == v-bind:value="変数名" + v-on:input="input"
+const clear = () => {
+    item1.name = ''
+    item1.price = 0
+}
+
 </script>
 
 <template>
     <div class="container">
         <h1>Payment</h1>
-        <input v-on:input="input" />
+        <input v-model="item1.name"/>
         <!-- @inputも可 -->
-        <input v-on:input="inputPrice" />
+        <input v-on:input="inputPrice" v-bind:value="item1.price"/>
+        <button v-on:click="clear">Clear</button>
         <div class="payment">
             <label>{{ item1.name }}</label>
             <label>{{ item1.price }} yen</label>
