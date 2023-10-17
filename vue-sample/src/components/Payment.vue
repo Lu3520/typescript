@@ -1,9 +1,18 @@
 <script setup lang="ts">
+// import {ref, reactive} from 'vue'
+import {reactive} from 'vue'
 
-const itemName1 = 'Desk'
+// Ref, Reactive：この変数が変わったら、templateに反映してねという関数です
+// const itemName1 = ref<string>('Desk')
 const itemName2 = 'Bike'
 
-const price1 = 40000
+// Reactive is for object
+const item1 = reactive({
+    name: 'Desk',
+    price: 40000
+})
+
+// const price1 = 40000
 const price2 = 20000
 
 const url1 = 'https://www.amazon.co.jp/ref=nav_logo'
@@ -14,6 +23,14 @@ const buy = (itemName: string) => {
 
 const input = (event: any) => {
     console.log('evnet: ', event.target.value)
+    // objectがconstでも中のvalueを変更することが可能
+    item1.name = event.target.value
+}
+
+const inputPrice = (event: any) => {
+    console.log('evnet: ', event.target.value)
+    // objectがconstでも中のvalueを変更することが可能
+    item1.price = event.target.value
 }
 
 </script>
@@ -23,13 +40,14 @@ const input = (event: any) => {
         <h1>Payment</h1>
         <input v-on:input="input" />
         <!-- @inputも可 -->
+        <input v-on:input="inputPrice" />
         <div class="payment">
-            <label>{{ itemName1 }}</label>
-            <label>{{ price1 }} yen</label>
+            <label>{{ item1.name }}</label>
+            <label>{{ item1.price }} yen</label>
             <!-- scriptの変数を使うため、v-bindを使用する必要がある -->
             <a v-bind:href="url1">bought at...</a>
-            <button v-on:click="buy(itemName1)">Buy</button>
-            <button @click="buy(itemName1)">Buy2</button>
+            <button v-on:click="buy(item1.name)">Buy</button>
+            <!-- <button @click="buy(itemName1)">Buy2</button> -->
         </div>
         <div class="payment">
             <label>{{ itemName2 }}</label>
@@ -58,6 +76,10 @@ const input = (event: any) => {
     height: 80px;
     width: 400px;
     background-color: aliceblue;
+    margin-bottom: 8px;
+}
+
+input {
     margin-bottom: 8px;
 }
 
