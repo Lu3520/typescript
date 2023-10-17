@@ -12,11 +12,17 @@ const buy = (itemName: string) => {
     alert('Are you sure to buy ' + itemName + '?')
 }
 
+const input = (event: any) => {
+    console.log('evnet: ', event.target.value)
+}
+
 </script>
 
 <template>
     <div class="container">
-        <h1>最近の支出</h1>
+        <h1>Payment</h1>
+        <input v-on:input="input" />
+        <!-- @inputも可 -->
         <div class="payment">
             <label>{{ itemName1 }}</label>
             <label>{{ price1 }} yen</label>
