@@ -12,7 +12,7 @@
 
 
 // import {ref, reactive} from 'vue'
-import {ref, reactive, computed, watch, toRefs} from 'vue'
+import {ref, reactive, computed, watch, toRefs, onBeforeMount, onMounted, onUpdated} from 'vue'
 
 // Ref, Reactive：この変数が変わったら、templateに反映してねという関数です
 // const itemName1 = ref<string>('Desk')
@@ -79,6 +79,25 @@ watch(price, () => {
     } else {
         priceLabel.value = item1.price + 'yen'
     }
+})
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+//ライフサイクルフック
+// データの中身が変更されるたび、DOMのテンプレートの部分を再度実行、再度レンダリングするようになる
+// Vue.jsはそれぞれのタイミングで実行すｒライフサイクル関数がある
+// https://ja.vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram
+// setupはbeforeCreateとcreatedのstateくらい
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+onBeforeMount(() => {
+    console.log('before mount')
+})
+
+onMounted(() => {
+    console.log('mounted')
+})
+
+onUpdated(() => {
+    console.log('update')
 })
 
 </script>
