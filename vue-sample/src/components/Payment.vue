@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import {ref, reactive} from 'vue'
-import {reactive, computed} from 'vue'
+import {ref, reactive, computed, watch, toRefs} from 'vue'
 
 // Ref, Reactive：この変数が変わったら、templateに反映してねという関数です
 // const itemName1 = ref<string>('Desk')
@@ -45,11 +45,27 @@ const budget = 50000
 // computedはProperty
 // 変数の値を分岐や計算をしたい場合、computedを使うのが推奨
 // computedを使うとキャッシュが使用できるので、動作はより軽くなったりする
-const priceLabel = computed(() => {
-    if (item1.price > budget) {
-        return 'too expensive'
+// const priceLabel = computed(() => {
+//     if (item1.price > budget) {
+//         return 'too expensive'
+//     } else {
+//         return item1.price + 'yen'
+//     }
+// })
+
+//watch((監視したい変数, () => {})
+const priceLabel = ref<string>(item1.price + 'yen')
+//item1はreactive propertyでも、中のpriceはreactive propertyという訳ではないので、reactive propertyにする必要がある。
+const { price } = toRefs(item1)
+watch(price, () => {
+    console.log('watch')
+    //item1.priceも可能
+    // if (item1.price > budget) {
+    if (price.value > budget) {
+        priceLabel.value = 'too expensive'
+        
     } else {
-        return item1.price + 'yen'
+        priceLabel.value = item1.price + 'yen'
     }
 })
 
