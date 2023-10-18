@@ -12,6 +12,10 @@ const postTweet = () => {
     inputDescription.value = ''
 }
 
+const deleteTweet = (id: number) => {
+    tweets.value = tweets.value.filter(t => t.id !== id)
+}
+
 </script>
 
 <template>
@@ -27,6 +31,7 @@ const postTweet = () => {
             <!-- https://reffect.co.jp/vue/v-bind-key-understand-by-developer-tool/#v-bindkey-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88 -->
             <li v-for="tweet in tweets" :key="tweet.id" class="tweet-list">
                 <span>{{ tweet.description }}</span>
+                <button @click="deleteTweet(tweet.id)" class="delete-button">delete</button>
             </li>
         </ul>
     </div>
@@ -64,7 +69,7 @@ const postTweet = () => {
     width: 400px;
 }
 
-button {
+.save-button {
     color: white;
     font-weight: bold;
     background-color: #68c9c9;
@@ -74,4 +79,26 @@ button {
     width: auto;
     height: auto;
 }
+
+.delete-button {
+    position: relative;
+    bottom: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #c99a68;
+    margin-top: 8px;
+    border-radius: 2px;
+    border: none;
+    width: auto;
+    height: 25px;
+    font-size: 12px;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.delete-button:hover {
+    background-color: #ac783f;
+}
+
 </style>
