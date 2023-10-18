@@ -39,7 +39,9 @@ const deleteTweet = (id: number) => {
                 <button @click="deleteTweet(tweet.id)" class="delete-button">delete</button>
             </li> -->
             <!-- PropsをTweetListに送る -->
-            <TweetList :tweets="tweets" @delete-tweet="deleteTweet"/>
+            <!-- <TweetList :tweets="tweets" @delete-tweet="deleteTweet"/> -->
+            <!-- 関数をpropsで伝播することもできるがVue公式の推進の書き方ではない -->
+            <TweetList :tweets="tweets" :delete-tweet="deleteTweet"/>
         </ul>
     </div>
   </div>

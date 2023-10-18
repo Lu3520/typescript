@@ -8,17 +8,26 @@ type Tweet = {
     description: string;
 }
 
+// type Props = {
+//     tweets: Tweet[]
+// }
+
+// emitを使わない書き方
+// Propsを使う
 type Props = {
     tweets: Tweet[]
+    // idとの引数を受け取ってなにもreturnしないというtypescriptの書き方
+    deleteTweet: (id: number) => void
 }
+
 
 // Propsを受け取ることを宣言
 defineProps<Props>()
 
-const emit = defineEmits(['delete-tweet'])
-const deleteTweet = (id: number) => {
-    emit('delete-tweet', id)
-}
+// const emit = defineEmits(['delete-tweet'])
+// const deleteTweet = (id: number) => {
+//     emit('delete-tweet', id)
+// }
 
 </script>
 
