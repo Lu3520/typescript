@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import {ref, reactive} from 'vue'
-import {reactive} from 'vue'
+import {reactive, computed} from 'vue'
 
 // Ref, Reactive：この変数が変わったら、templateに反映してねという関数です
 // const itemName1 = ref<string>('Desk')
@@ -42,6 +42,16 @@ const clear = () => {
 }
 
 const budget = 50000
+// computedはProperty
+// 変数の値を分岐や計算をしたい場合、computedを使うのが推奨
+// computedを使うとキャッシュが使用できるので、動作はより軽くなったりする
+const priceLabel = computed(() => {
+    if (item1.price > budget) {
+        return 'too expensive'
+    } else {
+        return item1.price + 'yen'
+    }
+})
 
 </script>
 
@@ -54,7 +64,7 @@ const budget = 50000
         <button v-on:click="clear">Clear</button>
         <div class="payment">
             <label>{{ item1.name }}</label>
-            <label>{{ item1.price > budget ? 'too expensive' : item1.price + 'yen'}}</label>
+            <label>{{ priceLabel }}</label>
             <!-- <label>{{ item1.price }} yen</label> -->
             <!-- scriptの変数を使うため、v-bindを使用する必要がある -->
             <a v-bind:href="url1">bought at...</a>
