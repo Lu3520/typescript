@@ -1,4 +1,16 @@
 <script setup lang="ts">
+// setupすることで最後のreturnもいらなくなる
+// setupを書かないと
+// export default {
+//    setup() {
+//     const x
+//     return {
+//         x
+//     }
+//   }
+// }
+
+
 // import {ref, reactive} from 'vue'
 import {ref, reactive, computed, watch, toRefs} from 'vue'
 
