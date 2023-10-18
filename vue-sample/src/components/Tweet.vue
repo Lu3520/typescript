@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import TweetPostForm from './TweetPostForm.vue';
+import TweetList from './TweetList.vue';
 
 const tweets = ref([{ id: 0, description: 'Hello World'}, { id: 1, description: 'this is the second'}])
 const inputDescription = ref<string>('')
@@ -21,10 +23,11 @@ const deleteTweet = (id: number) => {
 <template>
   <div class="container">
     <h1>Tweeter</h1>
-    <div class="form-container">
+    <TweetPostForm />
+    <!-- <div class="form-container">
         <input v-model="inputDescription" />
         <button class="save-button" @click="postTweet">post</button>
-    </div>
+    </div> -->
     <div class="tweet-container">
         <!-- v-ifの切替のコストはv-showより高いがv-elseが使える -->
         <!-- <p v-if="tweets.length <= 0">No tweets have been added</p> -->
@@ -32,10 +35,12 @@ const deleteTweet = (id: number) => {
         <ul>
             <!-- keyを使う理由 -->
             <!-- https://reffect.co.jp/vue/v-bind-key-understand-by-developer-tool/#v-bindkey-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88 -->
-            <li v-for="tweet in tweets" :key="tweet.id" class="tweet-list">
+            <!-- <li v-for="tweet in tweets" :key="tweet.id" class="tweet-list">
                 <span>{{ tweet.description }}</span>
                 <button @click="deleteTweet(tweet.id)" class="delete-button">delete</button>
-            </li>
+            </li> -->
+            <!-- PropsをTweetListに送る -->
+            <TweetList :tweets="tweets" />
         </ul>
     </div>
   </div>
@@ -48,7 +53,7 @@ const deleteTweet = (id: number) => {
   align-items: center;
 }
 
-.form-container {
+/* .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,6 +62,11 @@ const deleteTweet = (id: number) => {
   width: 500px;
   margin-bottom: 12px;
   border-radius: 4px;
+} */
+
+.tweet-container {
+    position: relative;;
+    right: 20px;
 }
 
 .tweet-list{
@@ -72,7 +82,7 @@ const deleteTweet = (id: number) => {
     width: 400px;
 }
 
-.save-button {
+/* .save-button {
     color: white;
     font-weight: bold;
     background-color: #68c9c9;
@@ -81,9 +91,9 @@ const deleteTweet = (id: number) => {
     border: none;
     width: auto;
     height: auto;
-}
+} */
 
-.delete-button {
+/* .delete-button {
     position: relative;
     bottom: 5px;
     color: white;
@@ -102,6 +112,6 @@ const deleteTweet = (id: number) => {
 
 .delete-button:hover {
     background-color: #ac783f;
-}
+} */
 
 </style>
