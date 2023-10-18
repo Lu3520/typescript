@@ -41,6 +41,8 @@ const clear = () => {
     item1.price = 0
 }
 
+const budget = 50000
+
 </script>
 
 <template>
@@ -52,7 +54,8 @@ const clear = () => {
         <button v-on:click="clear">Clear</button>
         <div class="payment">
             <label>{{ item1.name }}</label>
-            <label>{{ item1.price }} yen</label>
+            <label>{{ item1.price > budget ? 'too expensive' : item1.price + 'yen'}}</label>
+            <!-- <label>{{ item1.price }} yen</label> -->
             <!-- scriptの変数を使うため、v-bindを使用する必要がある -->
             <a v-bind:href="url1">bought at...</a>
             <button v-on:click="buy(item1.name)">Buy</button>
