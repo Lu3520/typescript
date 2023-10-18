@@ -26,6 +26,9 @@ const deleteTweet = (id: number) => {
         <button class="save-button" @click="postTweet">post</button>
     </div>
     <div class="tweet-container">
+        <!-- v-ifの切替のコストはv-showより高いがv-elseが使える -->
+        <!-- <p v-if="tweets.length <= 0">No tweets have been added</p> -->
+        <p v-show="tweets.length <= 0">No tweets have been added</p>
         <ul>
             <!-- keyを使う理由 -->
             <!-- https://reffect.co.jp/vue/v-bind-key-understand-by-developer-tool/#v-bindkey-%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88 -->
