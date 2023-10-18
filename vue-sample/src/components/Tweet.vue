@@ -4,14 +4,12 @@ import TweetPostForm from './TweetPostForm.vue';
 import TweetList from './TweetList.vue';
 
 const tweets = ref([{ id: 0, description: 'Hello World'}, { id: 1, description: 'this is the second'}])
-const inputDescription = ref<string>('')
 
-const postTweet = () => {
-    if(inputDescription.value == '') return
-    const tweet = { id: tweets.value.length + 1, description: inputDescription.value }
-    console.log('inputDescription', inputDescription)
+const postTweet = (description: string) => {
+    if(description == '') return
+    // keyの名前とvalueの名前が一緒であれば：を省略できる
+    const tweet = { id: tweets.value.length + 1, description }
     tweets.value.push(tweet)
-    inputDescription.value = ''
 }
 
 const deleteTweet = (id: number) => {
@@ -23,7 +21,8 @@ const deleteTweet = (id: number) => {
 <template>
   <div class="container">
     <h1>Tweeter</h1>
-    <TweetPostForm />
+    <!-- post-tweetのvalueは引数として受け取る -->
+    <TweetPostForm @post-tweet="postTweet"/>
     <!-- <div class="form-container">
         <input v-model="inputDescription" />
         <button class="save-button" @click="postTweet">post</button>
@@ -40,7 +39,7 @@ const deleteTweet = (id: number) => {
                 <button @click="deleteTweet(tweet.id)" class="delete-button">delete</button>
             </li> -->
             <!-- PropsをTweetListに送る -->
-            <TweetList :tweets="tweets" />
+            <TweetList :tweets="tweets" @delete-tweet="deleteTweet"/>
         </ul>
     </div>
   </div>

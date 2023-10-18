@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 
-const tweets = ref([{ id: 0, description: 'Hello World'}, { id: 1, description: 'this is the second'}])
 const inputDescription = ref<string>('')
 
+const emit = defineEmits(['post-tweet'])
 const postTweet = () => {
-    if(inputDescription.value == '') return
-    const tweet = { id: tweets.value.length + 1, description: inputDescription.value }
-    console.log('inputDescription', inputDescription)
-    tweets.value.push(tweet)
+    // 子どものコンポーネントから親のコンポーネントに伝播
+    emit('post-tweet', inputDescription.value)
     inputDescription.value = ''
+    console.log(inputDescription.value)
 }
+
 </script>
 
 <template>

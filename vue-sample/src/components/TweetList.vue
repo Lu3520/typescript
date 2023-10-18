@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 親Propsを使うためのライブラリ
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
 // type定義
 type Tweet = {
@@ -12,17 +12,17 @@ type Props = {
     tweets: Tweet[]
 }
 
-const deleteTweet = (id: number) => {
-    console.log('delete')
-}
-
 // Propsを受け取ることを宣言
 defineProps<Props>()
+
+const emit = defineEmits(['delete-tweet'])
+const deleteTweet = (id: number) => {
+    emit('delete-tweet', id)
+}
 
 </script>
 
 <template>
-    <h1>Hello</h1>
     <li v-for="tweet in tweets" :key="tweet.id" class="tweet-list">
         <span>{{ tweet.description }}</span>
         <button @click="deleteTweet(tweet.id)" class="delete-button">delete</button>
