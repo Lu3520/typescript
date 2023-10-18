@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import Payment from './components/Payment.vue';
+// import Payment from './components/Payment.vue';
+import Tweet from './components/Tweet.vue';
 </script>
 
 <template>
   <!-- yarn vreate vite -> vue -> typescript -->
   <!-- yarnでupdate -->
   <!-- yarn devで実行 -->
-  <Payment />
+  <!-- <Payment /> -->
+  <Tweet />
 </template>
 
 <style scoped>
