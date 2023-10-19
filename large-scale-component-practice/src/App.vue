@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import TodoList from './components/TodoList.vue';
 import { provide } from 'vue'
-import { todos } from './useTodo'
+import { todos, addTodo } from './useTodo'
 
 // provideを使うことで子どもコンポーネントに伝播することができる
 provide('todos', todos)
+// addTodoとの関数をprovideしている
+provide('addTodo', addTodo)
 </script>
 
 <template>

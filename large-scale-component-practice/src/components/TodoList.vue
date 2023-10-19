@@ -4,8 +4,9 @@ import { inject } from 'vue'
 // injectすることで値を受け取ることができる
 const todos = inject('todos')
 
+const _addTodo = inject('addTodo')
 const addTodo = (title: string) => {
-  console.log(title)
+  _addTodo(title)
 }
 
 </script>
