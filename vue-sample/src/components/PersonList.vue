@@ -9,8 +9,10 @@ defineProps<Props>()
 
 const emit = defineEmits(['delete-person'])
 
-const deletePerson = (id: number) => {
-    emit('delete-person', id)
+const onClickDelete = (id: number, name: string) => {
+    if (confirm('Are you sure to delete ' + name + '?')) {
+        emit('delete-person', id)
+    }
 }
 
 </script>
@@ -19,7 +21,7 @@ const deletePerson = (id: number) => {
     <li v-for="person in persons" :key="person.id" class="person-list">
         <span class="list-text">name: {{ person.name }}</span>
         <span class="list-text">age: {{ person.age }}</span>
-        <button @click="deletePerson(person.id)">
+        <button @click="onClickDelete(person.id, person.name)">
             <span>delete</span>
         </button>
     </li>

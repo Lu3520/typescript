@@ -29,7 +29,7 @@ const deletePerson = (id :number) => {
 
 <template>
     <div class="container">
-        <h1>title</h1>
+        <h1>Employee List</h1>
         <PersonPostForm @register="register"/>
         <div class="list-container">
             <ul>
