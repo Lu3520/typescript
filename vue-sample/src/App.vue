@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // import Payment from './components/Payment.vue';
 import Tweet from './components/Tweet.vue';
+import Persons from './components/Persons.vue';
 </script>
 
 <template>
@@ -8,7 +9,8 @@ import Tweet from './components/Tweet.vue';
   <!-- yarnでupdate -->
   <!-- yarn devで実行 -->
   <!-- <Payment /> -->
-  <Tweet />
+  <!-- <Tweet /> -->
+  <Persons />
 </template>
 
 <style scoped>
