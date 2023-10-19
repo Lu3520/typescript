@@ -1,15 +1,16 @@
 <script setup lang="ts">
-// import { defineProps } from 'vue'
-// defineProps<{
-//   title: string,
-// }>();
+import { defineProps } from 'vue'
+defineProps<{
+  title: string,
+}>();
 </script>
 
 <template>
-  <!-- <div class="card-container">
+  <div class="card-container">
     <span class="title">{{ title }}</span>
+    <!-- 親からのtagや設定を受け取るコード -->
     <slot></slot>
-  </div> -->
+  </div>
 </template>
 
 <style scoped>
