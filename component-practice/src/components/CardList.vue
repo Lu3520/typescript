@@ -5,7 +5,6 @@ import RocketIcon from './RocketIcon.vue';
 
 <template>
   <div class="container">
-    <h1>hello</h1>
     <Card title="Title" class="card">
       <div class="contents">
         ここにさまざまなコンテンツが入ります
