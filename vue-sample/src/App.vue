@@ -5,7 +5,7 @@ import Persons from './components/Persons.vue';
 </script>
 
 <template>
-  <!-- yarn vreate vite -> vue -> typescript -->
+  <!-- yarn create vite -> vue -> typescript -->
   <!-- yarnでupdate -->
   <!-- yarn devで実行 -->
   <!-- <Payment /> -->
