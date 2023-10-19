@@ -12,12 +12,17 @@ export type Person = {
 // typeの書き方＋定義方法
 const persons: Ref<Person[]> = ref([{id: 0, name: 'John', age: 24}, {id:1, name: 'mike', age: 27}])
 
-const register = (name: string, age: number) => {
-    if (name == '') return
-    if (typeof age != 'number') {
-        alert('please insert number in age')
+const register = (person: Person) => {
+    if (person.name == '') return
+    if (person.age < 1) {
+        alert('please insert a number larger than 0')
         return
     }
+    persons.value.push(person)
+}
+
+const deletePerson = (id :number) => {
+    persons.value = persons.value.filter(t => t.id !== id)
 }
 
 </script>
@@ -25,10 +30,10 @@ const register = (name: string, age: number) => {
 <template>
     <div class="container">
         <h1>title</h1>
-        <PersonPostForm />
+        <PersonPostForm @register="register"/>
         <div class="list-container">
             <ul>
-                <PersonList />
+                <PersonList :persons="persons" @delete-person="deletePerson"/>
             </ul>
         </div>
     </div>
@@ -39,6 +44,5 @@ const register = (name: string, age: number) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 </style>

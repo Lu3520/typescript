@@ -6,7 +6,7 @@ const inputAge = ref<number>(0)
 const emit = defineEmits(['register'])
 
 const register = () => {
-    const person = { id: Math.random(), name: inputAge.value, age: inputAge.value }
+    const person = { id: Math.random(), name: inputName.value, age: inputAge.value }
     console.log(person)
     emit('register', person)
 }
@@ -63,5 +63,19 @@ input {
     justify-content: space-between;
     height: 50px;
     margin-bottom: 20px;
+}
+
+button {
+    color: white;
+    font-weight: bold;
+    background-color: #68c9c9;
+    margin-top: 8px;
+    border-radius: 2px;
+    border: none;
+    width: auto;
+    height: auto;
+}
+button:hover {
+    background-color: #37bdbd;
 }
 </style>
