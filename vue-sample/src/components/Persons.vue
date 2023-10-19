@@ -3,7 +3,7 @@ import PersonPostForm from './PersonPostForm.vue';
 import PersonList from './PersonList.vue';
 import { Ref, ref } from 'vue';
 
-type Person = {
+export type Person = {
     id: number,
     name: string,
     age: number,
