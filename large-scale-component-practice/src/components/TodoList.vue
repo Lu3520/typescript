@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 
-// injectすることで値を受け取ることができる
-const todos = inject('todos')
+const { todos, addTodo: _addTodo } = inject('todos')
 
-const _addTodo = inject('addTodo')
+// injectすることで値を受け取ることができる
+// const todos = inject('todos')
+
+// const _addTodo = inject('addTodo')
 const addTodo = (title: string) => {
   _addTodo(title)
 }
