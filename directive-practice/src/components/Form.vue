@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { DirectiveBinding, ref } from 'vue';
 
 const userNAme = ref<string>('')
 
 // 独自定義するv-focusを作成する
 const vFocus = {
-    mounted: (el: HTMLElement) => {
+    mounted: (el: HTMLElement, binding: DirectiveBinding ) => {
         el.focus()
+
+        // alertというmodifiersを定義する
+        if (binding.modifiers.alert) {
+          el.style.backgroundColor = 'pink'
+        }
     }
 }
 
@@ -28,7 +33,7 @@ const onSubmit = () => {
   <form>
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input v-model="userNAme" id="user-name" name="user-name" type="text" v-focus />
+      <input v-model="userNAme" id="user-name" name="user-name" type="text" v-focus.alert />
     </div>
     <div class="form-control">
       <label for="age">Your Age</label>
