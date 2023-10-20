@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import axios from 'axios'
 
 const vFocus = {
   mounted: (el: HTMLElement) => {
@@ -11,6 +12,25 @@ const userName = ref<string>('')
 const interest = ref([])
 
 const onSubmit = (e: Event) => {
+  // backendとAPIとの通信をする際にはjavascript組み込みのfetchを使用してrequestを渡す
+  // 今回はfirebaseで無料のreal datebaseを使って練習する
+  // でも実際にjavascript組み込みのfetchを使うことが多くなくてaxiosを使うのが多い
+  // このprojectもaxiosを使っていく予定
+  // terminalでyarn add axiosでaxiosをinstall
+
+  // fetch('https://vue-example-de392-default-rtdb.firebaseio.com/surveys.json', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({ name : userName.value, interest: interest.value })
+  // })
+
+  // axiosの書き方
+  axios.post('https://vue-example-de392-default-rtdb.firebaseio.com/surveys.json', {
+    name: userName.value,
+    interest: interest.value
+  })
   interest.value = []
 }
 
