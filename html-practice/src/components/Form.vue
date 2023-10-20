@@ -10,10 +10,14 @@ const vFocus = {
 
 const userName = ref<string>('')
 const interest = ref([])
+const data = ref()
+const isLoading = ref<boolean>(false)
 
 onMounted(async () => {
+  isLoading.value = true
   // awaitを使わないと、getが完了まで他の処理は止まる、他の設定ができなくなる
-  const data = await axios.get('https://vue-example-de392-default-rtdb.firebaseio.com/surveys.json')
+  data.value = await axios.get('https://vue-example-de392-default-rtdb.firebaseio.com/surveys.json')
+  isLoading.value = false
   console.log('data is ', data)
 })
 
@@ -68,6 +72,10 @@ const onSubmit = (e: Event) => {
         />
         <label for="interest-angular">Angular.js</label>
       </div>
+    </div>
+    <div v-show="isLoading">Loading</div>
+    <div v-show="!isLoading">
+      {{ data }}
     </div>
     <div>
       <button @click.prevent="onSubmit">Save Data</button>
@@ -130,6 +138,7 @@ button {
   cursor: pointer;
   padding: 0.75rem 2rem;
   border-radius: 30px;
+  margin-top: 8px;
 }
 
 button:hover,
