@@ -10,6 +10,18 @@ const vFocus = {
     }
 }
 
+const onSubmit = () => {
+    console.log('usrName ', userNAme)
+    console.log('submit')
+}
+
+// script内click.preventの書き方
+// const onSubmit = (e: any) => {
+//     e.preventDefault()
+//     console.log('usrName ', userNAme)
+//     console.log('submit')
+// }
+
 </script>
 
 <template>
@@ -61,7 +73,7 @@ const vFocus = {
       </div>
     </div>
     <div>
-      <button>Save Data</button>
+      <button @click.prevent="onSubmit">Save Data</button>
     </div>
   </form>
 </template>
