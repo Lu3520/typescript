@@ -1,11 +1,22 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const userNAme = ref<string>('')
+
+// 独自定義するv-focusを作成する
+const vFocus = {
+    mounted: (el: HTMLElement) => {
+        el.focus()
+    }
+}
+
 </script>
 
 <template>
   <form>
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" />
+      <input v-model="userNAme" id="user-name" name="user-name" type="text" v-focus />
     </div>
     <div class="form-control">
       <label for="age">Your Age</label>
