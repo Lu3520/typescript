@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import axios from 'axios'
 
 const vFocus = {
@@ -10,6 +10,12 @@ const vFocus = {
 
 const userName = ref<string>('')
 const interest = ref([])
+
+onMounted(async () => {
+  // awaitを使わないと、getが完了まで他の処理は止まる、他の設定ができなくなる
+  const data = await axios.get('https://vue-example-de392-default-rtdb.firebaseio.com/surveys.json')
+  console.log('data is ', data)
+})
 
 const onSubmit = (e: Event) => {
   // backendとAPIとの通信をする際にはjavascript組み込みのfetchを使用してrequestを渡す
@@ -33,7 +39,6 @@ const onSubmit = (e: Event) => {
   })
   interest.value = []
 }
-
 
 </script>
 
