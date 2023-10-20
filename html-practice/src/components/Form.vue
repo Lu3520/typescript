@@ -12,11 +12,21 @@ const userName = ref<string>('')
 const interest = ref([])
 const data = ref()
 const isLoading = ref<boolean>(false)
+const err = ref()
 
 onMounted(async () => {
   isLoading.value = true
-  // awaitを使わないと、getが完了まで他の処理は止まる、他の設定ができなくなる
-  data.value = await axios.get('https://vue-example-de392-default-rtdb.firebaseio.com/surveys.json')
+  try {
+    // awaitを使わないと、getが完了まで他の処理は止まる、他の設定ができなくなる
+    const response = await axios.get('https://vue-example-de392-default-rtdb.firebaseio.com/surveys.json')
+    if (response.status !== 200) {
+      // throwしたerrorはcatch (e)のeに渡す
+      throw new Error('サーバー側のエラー')
+    }
+    data.value = response.data
+  } catch (e) {
+    err.value = e
+  }
   isLoading.value = false
   console.log('data is ', data)
 })
@@ -77,6 +87,7 @@ const onSubmit = (e: Event) => {
     <div v-show="!isLoading">
       {{ data }}
     </div>
+    <div v-if="err">{{ err }}</div>
     <div>
       <button @click.prevent="onSubmit">Save Data</button>
     </div>
