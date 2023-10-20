@@ -4,6 +4,7 @@ import { DirectiveBinding, ref, watch } from 'vue';
 const userName = ref<string>('')
 const from = ref<string>('Japan')
 const interest = ref([])
+const radios = ref([])
 
 watch(interest, () => {
   console.log('interest ', interest.value)
@@ -26,6 +27,7 @@ const onSubmit = () => {
     console.log('usrName ', userName.value)
     console.log('from ', from.value)
     console.log('interest ', interest.value)
+    console.log('how ', radios.value)
 }
 
 // script内click.preventの書き方
@@ -73,15 +75,15 @@ const onSubmit = () => {
     <div class="form-control">
       <h2>How do you learn?</h2>
       <div>
-        <input id="how-video" name="how" type="radio" />
+        <input id="how-video" name="how" type="radio" value="video" v-model="radios" />
         <label for="how-video">Video Courses</label>
       </div>
       <div>
-        <input id="how-books" name="how" type="radio" />
+        <input id="how-books" name="how" type="radio" value="books" v-model="radios" />
         <label for="how-books">Books</label>
       </div>
       <div>
-        <input id="how-other" name="how" type="radio" />
+        <input id="how-other" name="how" type="radio" value="other" v-model="radios" />
         <label for="how-other">Other</label>
       </div>
     </div>
