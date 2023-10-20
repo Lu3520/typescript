@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { DirectiveBinding, ref } from 'vue';
+import { DirectiveBinding, ref, watch } from 'vue';
 
-const userNAme = ref<string>('')
+const userName = ref<string>('')
+const from = ref<string>('Japan')
+const interest = ref([])
+
+watch(interest, () => {
+  console.log('interest ', interest.value)
+})
 
 // 独自定義するv-focusを作成する
 const vFocus = {
@@ -16,8 +22,10 @@ const vFocus = {
 }
 
 const onSubmit = () => {
-    console.log('usrName ', userNAme)
     console.log('submit')
+    console.log('usrName ', userName.value)
+    console.log('from ', from.value)
+    console.log('interest ', interest.value)
 }
 
 // script内click.preventの書き方
@@ -33,7 +41,7 @@ const onSubmit = () => {
   <form>
     <div class="form-control">
       <label for="user-name">Your Name</label>
-      <input v-model="userNAme" id="user-name" name="user-name" type="text" v-focus.alert />
+      <input v-model="userName" id="user-name" name="user-name" type="text" v-focus.alert />
     </div>
     <div class="form-control">
       <label for="age">Your Age</label>
@@ -41,7 +49,7 @@ const onSubmit = () => {
     </div>
     <div class="form-control">
       <label for="from">Where Are you from?</label>
-      <select id="from" name="from">
+      <select id="from" name="from" v-model="from">
         <option value="japan">Japan</option>
         <option value="china">China</option>
         <option value="others">Others</option>
@@ -50,15 +58,15 @@ const onSubmit = () => {
     <div class="form-control">
       <h2>What are you interested in?</h2>
       <div>
-        <input id="interest-react" name="interest" type="checkbox" />
+        <input id="interest-react" name="interest" type="checkbox" value="react" v-model="interest" />
         <label for="interest-react">React.js</label>
       </div>
       <div>
-        <input id="interest-vue" name="interest" type="checkbox" />
+        <input id="interest-vue" name="interest" type="checkbox" value="vue" v-model="interest" />
         <label for="interest-vue">Vue.js</label>
       </div>
       <div>
-        <input id="interest-angular" name="interest" type="checkbox" />
+        <input id="interest-angular" name="interest" type="checkbox" value="angular" v-model="interest" />
         <label for="interest-angular">Angular.js</label>
       </div>
     </div>
