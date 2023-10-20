@@ -73,6 +73,7 @@ const onSubmit = () => {
       </div>
     </div>
     <div>
+        <!-- click.prevent の preventはmodifiers(修飾子)と呼ばれる -->
       <button @click.prevent="onSubmit">Save Data</button>
     </div>
   </form>
