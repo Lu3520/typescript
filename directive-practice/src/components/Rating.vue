@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const isActiveButton = ref<string>('')
+const props = defineProps(['modelValue'])
+// modelValueがupdateされたらemitする
+const emits = defineEmits(['update:modelValue'])
+
+const isActiveButton = ref<string>(props.modelValue)
 const onClick = (buttonType: string) => {
     isActiveButton.value = buttonType
+    emits('update:modelValue', isActiveButton.value)
 }
 
 </script>

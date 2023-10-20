@@ -6,6 +6,7 @@ const userName = ref<string>('')
 const from = ref<string>('Japan')
 const interest = ref([])
 const radios = ref([])
+const ratings = ref<string>('')
 
 watch(interest, () => {
   console.log('interest ', interest.value)
@@ -29,6 +30,7 @@ const onSubmit = () => {
     console.log('from ', from.value)
     console.log('interest ', interest.value)
     console.log('how ', radios.value)
+    console.log('rating...', ratings.value)
 }
 
 // script内click.preventの書き方
@@ -89,7 +91,7 @@ const onSubmit = () => {
       </div>
     </div>
     <div>
-      <Rating />
+      <Rating v-model="ratings"/>
     </div>
     <div>
         <!-- click.prevent の preventはmodifiers(修飾子)と呼ばれる -->
