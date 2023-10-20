@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { DirectiveBinding, ref, watch } from 'vue';
+import Rating from './Rating.vue';
 
 const userName = ref<string>('')
 const from = ref<string>('Japan')
@@ -88,6 +89,9 @@ const onSubmit = () => {
       </div>
     </div>
     <div>
+      <Rating />
+    </div>
+    <div>
         <!-- click.prevent の preventはmodifiers(修飾子)と呼ばれる -->
       <button @click.prevent="onSubmit">Save Data</button>
     </div>
@@ -155,5 +159,10 @@ button:hover,
 button:active {
   border-color: #002350;
   background-color: #002350;
+}
+
+#from {
+  position: relative;
+  left: 180px;
 }
 </style>
