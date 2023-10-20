@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { inject } from 'vue'
+import { todoKey } from '../useTodo';
 
-const { todos, addTodo: _addTodo } = inject('todos')
+const state = inject(todoKey)
+if(!state) {
+  throw new Error('state is undefined')
+}
+
+// 型が識別できないという問題はInjectionKeyで解決できる
+const { todos, addTodo: _addTodo } = state
 
 // injectすることで値を受け取ることができる
 // const todos = inject('todos')

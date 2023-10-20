@@ -2,9 +2,10 @@
 import TodoList from './components/TodoList.vue';
 import { provide } from 'vue'
 // import { todos, addTodo } from './useTodo'
-import { todos } from './useTodo'
+import { todoKey, todos } from './useTodo'
 
-provide('todos', todos)
+// provide('todos', todos)
+provide(todoKey, todos)
 
 // // provideを使うことで子どもコンポーネントに伝播することができる
 // provide('todos', todos)
